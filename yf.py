@@ -221,14 +221,12 @@ INDEX = ["^GSPC","^IXIC","^DJI","^SOX","^VIX"]
 GLOBAL = ["000001.SS","399001.SZ","^N225","^KS11","^TWII","^AXJO","^GDAXI","^STOXX"]
 MACRO = ["CL=F","GC=F","DX-Y.NYB","BTC-USD","CNH=X","AUDUSD=X","CAD=X"]
 WATCHLIST = ["GOOGL","AMZN","SKM","SPMO","AVGO","NBIS","ORCL","SMCI","DRAM","MU","IREN",
-             "HOOD","NVDA","AIQ","SMH","BE","META","MRVL","RKLB","MDB","INTC","MSFT","AMD",
-             "TSLA","SPCX","ASML","AAPL","AAOI","COHR","GLW","CRDO","ALAB",
-             "LLY","UNH","JPM","BRK-B","XOM","WMT","HD",
-             "000660.KS","2330.TW","5536.TWO",
-             "GFS","AMKR","AMAT","LRCX","KLAC","ANET","LITE","CIEN",
-             "VRT","ETN","MPWR","MOD","GEV","CEG","VST","PWR",
-             "DELL","CRWV","APLD","CDNS","SNPS","ARM","005930.KS",
-             "2DG.F"]
+             "HOOD","NVDA","AIQ","SMH","BE","META","MRVL","RKLB","MDB","INTC","SPCX","ASML",
+             "AAPL","AAOI","COHR","GLW","LITE","LLY","KLAC",
+             "VRTX","CBRS","INOD","REGN",
+             "000660.KS","2330.TW",
+             "01530.HK","06990.HK","01801.HK","03692.HK","01276.HK",
+             "002938.SZ","002384.SZ","600584.SS","688525.SS","603629.SS"]
 SECTORS = [("信息技术","XLK"),("通信服务","XLC"),("可选消费","XLY"),("必需消费","XLP"),
            ("能源","XLE"),("金融","XLF"),("医疗保健","XLV"),("工业","XLI"),
            ("材料","XLB"),("房地产","XLRE"),("公用事业","XLU")]
@@ -240,17 +238,19 @@ AICHAIN = [("1.EDA/IP",        ["SNPS","CDNS","ARM"]),
            ("4.半导体设备",    ["ASML","AMAT","LRCX"]),
            ("5.存储HBM",       ["MU","000660.KS","005930.KS"]),
            ("6.先进封装",      ["AMKR","ASX"]),
-           ("7.光模块光互联",  ["COHR","LITE","FN"]),
+           ("7.光模块光互联",  ["COHR","CIEN","FN"]),
            ("8.电气互连",      ["CRDO","ALAB"]),
-           ("9.数据中心",      ["EQIX","DLR","SRVR"]),
+           ("9.数据中心",      ["EQIX","APLD","CRWV"]),
            ("10.散热",          ["VRT","TT","MOD"]),
-           ("11.电力设备",      ["ETN","POWL","GRID"]),
+           ("11.电力设备",      ["GEV","POWL","GRID"]),
            ("12.电网建设",      ["PWR","MYRG","MTZ"]),
-           ("13.核能与铀",      ["CCJ","OKLO","URNM"]),
+           ("13.核能与铀",      ["CCJ","CEG","URNM"]),
            ("14.物理AI机器人",  ["ROK","BOTZ","ROBO"])]
 # 瓶颈地图代表标的中、当前自选股universe尚未包含的(取价+历史，不做个股新闻扫描)
-AICHAIN_EXTRA = ["TSM","ASX","FN","EQIX","DLR","SRVR","TT","POWL","GRID",
-                 "MYRG","MTZ","CCJ","OKLO","URNM","ROK","BOTZ","ROBO"]
+AICHAIN_EXTRA = ["SNPS","CDNS","ARM","AMD","TSM","GFS","AMAT","LRCX","005930.KS",
+                 "AMKR","ASX","CIEN","FN","CRDO","ALAB","EQIX","APLD","CRWV",
+                 "VRT","TT","MOD","GEV","POWL","GRID","PWR","MYRG","MTZ",
+                 "CCJ","CEG","URNM","ROK","BOTZ","ROBO"]
 
 def _p(v, pct=False):
     if v is None: return "—"
