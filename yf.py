@@ -137,8 +137,11 @@ def _fetch_history(symbols, cj=None):
 
 def _pret(last, pairs):
     """往前滚动累计涨跌：1个月=30天,3个月=90天,1年=365天,2年=730天。"""
-    R = {"m1":None,"m3":None,"y1":None,"y2":None}
+    R = {"m1":None,"m3":None,"y1":None,"y2":None,"prev_pct":None}
     if not last or not pairs: return R
+    if len(pairs) >= 3:
+        p1, p2 = pairs[-2][1], pairs[-3][1]
+        if p1 and p2: R["prev_pct"] = (p1/p2-1)*100
     today = pairs[-1][0]
     def onbefore(d):
         v=None
@@ -266,16 +269,17 @@ def _row_periods(d):
 def _print_group(title, data, order, with_hist=True):
     print(f"\n── {title} " + "─"*max(0,28-len(title)))
     if with_hist:
-        print(f"{'代码':<10}{'收盘':>11}{_hdr_periods()}{'前收':>10}{'延时价':>11}{'延时':>8} 时段")
+        print(f"{'代码':<10}{'收盘':>11}{_hdr_periods()}{'前收':>10}{'前收涨跌':>8}{'延时价':>11}{'延时':>8} 时段")
     else:
-        print(f"{'代码':<10}{'收盘':>11}{'涨跌幅':>8}{'前收':>10}{'延时价':>11}{'延时':>8} 时段")
+        print(f"{'代码':<10}{'收盘':>11}{'涨跌幅':>8}{'前收':>10}{'前收涨跌':>8}{'延时价':>11}{'延时':>8} 时段")
     for s in order:
         d = data.get(s, {})
         if d.get("error"): print(f"{s:<10}{'未获取':>11}  ({d['error'][:22]})"); continue
+        prev_pct = (d.get("ret") or {}).get("prev_pct")
         if with_hist:
-            print(f"{d['symbol']:<10}{_p(d.get('regular')):>11}{_row_periods(d)}{_p(d.get('prev')):>10}{_p(d.get('ext')):>11}{_p(d.get('ext_pct'),1):>8} {d.get('session','')}")
+            print(f"{d['symbol']:<10}{_p(d.get('regular')):>11}{_row_periods(d)}{_p(d.get('prev')):>10}{_p(prev_pct,1):>8}{_p(d.get('ext')):>11}{_p(d.get('ext_pct'),1):>8} {d.get('session','')}")
         else:
-            print(f"{d['symbol']:<10}{_p(d.get('regular')):>11}{_p(d.get('reg_pct'),1):>8}{_p(d.get('prev')):>10}{_p(d.get('ext')):>11}{_p(d.get('ext_pct'),1):>8} {d.get('session','')}")
+            print(f"{d['symbol']:<10}{_p(d.get('regular')):>11}{_p(d.get('reg_pct'),1):>8}{_p(d.get('prev')):>10}{_p(prev_pct,1):>8}{_p(d.get('ext')):>11}{_p(d.get('ext_pct'),1):>8} {d.get('session','')}")
 
 if __name__ == "__main__":
     now_bj = datetime.datetime.utcnow()+datetime.timedelta(hours=8)
@@ -298,18 +302,18 @@ if __name__ == "__main__":
         _print_group(title, data, g)
     _print_group("大宗/汇率/加密", data, MACRO, with_hist=False)
     print(f"\n── S&P500 行业(全11) ──")
-    print(f"{'行业':<8}{'代码':<7}{_hdr_periods()}")
+    print(f"{'行业':<8}{'代码':<7}{_hdr_periods()}{'前收涨跌':>8}")
     for name,etf in SECTORS:
         d=data.get(etf,{})
         if d.get("error"): print(f"{name:<8}{etf:<7}{'未获取':>8}")
-        else: print(f"{name:<8}{etf:<7}{_row_periods(d)}")
+        else: print(f"{name:<8}{etf:<7}{_row_periods(d)}{_p((d.get('ret') or {}).get('prev_pct'),1):>8}")
     print(f"\n── AI产业链(代表标的) ──")
-    print(f"{'环节':<14}{'代表':<8}{'收盘':>11}{_hdr_periods()}{'延时价':>11}{'延时':>8}")
+    print(f"{'环节':<14}{'代表':<8}{'收盘':>11}{_hdr_periods()}{'前收涨跌':>8}{'延时价':>11}{'延时':>8}")
     for seg,reps in AICHAIN:
         for i,sym in enumerate(reps):
             d=data.get(sym,{}); lab=seg if i==0 else ""
             if d.get("error"): print(f"{lab:<14}{sym:<8}{'未获取':>11}")
-            else: print(f"{lab:<14}{sym:<8}{_p(d.get('regular')):>11}{_row_periods(d)}{_p(d.get('ext')):>11}{_p(d.get('ext_pct'),1):>8}")
+            else: print(f"{lab:<14}{sym:<8}{_p(d.get('regular')):>11}{_row_periods(d)}{_p((d.get('ret') or {}).get('prev_pct'),1):>8}{_p(d.get('ext')):>11}{_p(d.get('ext_pct'),1):>8}")
     print("\n说明: 涨跌幅=当日;1个月/3个月/1年/2年=对比往前30/90/365/730天的累计涨跌(非年化)。延时=盘前/盘后涨跌。")
     print("说明: 现金指数盘前不交易,盘前阶段收盘列为上一交易日收盘,看期货定方向。S&P行业用对应SPDR ETF。")
     print("说明: 抬头/文件名用美股交易日(盘后)或美股日期(盘前);生成时间用北京时间。本脚本是行情唯一来源,未获取禁止新闻回填。")
