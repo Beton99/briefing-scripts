@@ -225,7 +225,7 @@ WATCHLIST = ["GOOGL","AMZN","SKM","SPMO","AVGO","NBIS","ORCL","SMCI","DRAM","MU"
              "AAPL","AAOI","COHR","GLW","LITE","LLY","KLAC",
              "VRTX","CBRS","INOD","REGN",
              "000660.KS","2330.TW",
-             "01530.HK","06990.HK","01801.HK","03692.HK","01276.HK",
+             "1530.HK","6990.HK","1801.HK","3692.HK","1276.HK",
              "002938.SZ","002384.SZ","600584.SS","688525.SS","603629.SS"]
 SECTORS = [("信息技术","XLK"),("通信服务","XLC"),("可选消费","XLY"),("必需消费","XLP"),
            ("能源","XLE"),("金融","XLF"),("医疗保健","XLV"),("工业","XLI"),
