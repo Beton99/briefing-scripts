@@ -223,6 +223,7 @@ MACRO = ["CL=F","GC=F","DX-Y.NYB","BTC-USD","CNH=X","AUDUSD=X","CAD=X"]
 WATCHLIST = ["GOOGL","AMZN","SKM","SPMO","AVGO","NBIS","ORCL","SMCI","DRAM","MU","IREN",
              "HOOD","NVDA","AIQ","SMH","BE","META","MRVL","RKLB","MDB","INTC","SPCX","ASML",
              "AAPL","AAOI","COHR","GLW","LITE","LLY","KLAC",
+             "MPWR","VST","DELL","ARM","005930.KS","2DG.F",
              "VRTX","CBRS","INOD","REGN",
              "000660.KS","2330.TW",
              "1530.HK","6990.HK","1801.HK","3692.HK","1276.HK",
@@ -247,7 +248,7 @@ AICHAIN = [("1.EDA/IP",        ["SNPS","CDNS","ARM"]),
            ("13.核能与铀",      ["CCJ","CEG","URNM"]),
            ("14.物理AI机器人",  ["ROK","BOTZ","ROBO"])]
 # 瓶颈地图代表标的中、当前自选股universe尚未包含的(取价+历史，不做个股新闻扫描)
-AICHAIN_EXTRA = ["SNPS","CDNS","ARM","AMD","TSM","GFS","AMAT","LRCX","005930.KS",
+AICHAIN_EXTRA = ["SNPS","CDNS","AMD","TSM","GFS","AMAT","LRCX",
                  "AMKR","ASX","CIEN","FN","CRDO","ALAB","EQIX","APLD","CRWV",
                  "VRT","TT","MOD","GEV","POWL","GRID","PWR","MYRG","MTZ",
                  "CCJ","CEG","URNM","ROK","BOTZ","ROBO"]
