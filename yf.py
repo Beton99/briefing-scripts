@@ -60,6 +60,12 @@ def _next_session_date(et_dt):
 
 _STATE2SESS = {"PRE":"盘前","PREPRE":"盘前","REGULAR":"盘中","POST":"盘后","POSTPOST":"盘后","CLOSED":"收盘"}
 
+def _is_market_open_today(rmt, et_now_date):
+    """如果标的的最近交易日期不等于今天 → 今天休市。rmt=None 时保守当休市。"""
+    if rmt is None: return False
+    try: return _et_date(rmt) == et_now_date
+    except Exception: return False
+
 def _session():
     cj = http.cookiejar.CookieJar()
     for u in ("https://fc.yahoo.com","https://finance.yahoo.com"): _http(u, cj, retries=2)
@@ -196,6 +202,20 @@ def fetch_all(symbols):
                         "ext":None,"ext_pct":None,"session":"历史","rmt":None,"time_bj":"?","ccy":""}
                 filled += 1
     if filled: print(f"[诊断] v7缺失用历史补 {filled} 只")
+    # 休市判断：对比每个标的的 regularMarketTime 对应日期和今天美东日期
+    try:
+        from zoneinfo import ZoneInfo; _et_today = datetime.datetime.now(ZoneInfo("America/New_York")).date()
+    except Exception:
+        u=datetime.datetime.utcnow(); _et_today=(u-datetime.timedelta(hours=4 if 3<=u.month<=11 else 5)).date()
+    holiday_count = 0
+    for s in q:
+        d=q[s]
+        if d.get("session") == "历史": continue  # 历史补的跳过
+        if not _is_market_open_today(d.get("rmt"), _et_today):
+            d["session_orig"] = d["session"]
+            d["session"] = "休市"
+            holiday_count += 1
+    if holiday_count: print(f"[诊断] 今日休市标的 {holiday_count} 只(时段标注为休市)")
     out = {}
     for s in symbols:
         d = q.get(s)
