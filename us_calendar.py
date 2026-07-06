@@ -116,6 +116,8 @@ def us_trading_session(now_utc=None, mode="auto"):
     """
     返回 dict：
       should_run    : bool      是否交易日（可运行）
+      is_closed     : bool      是否休市（should_run 的反向别名，兼容提示词旧写法）
+      closed        : bool      同 is_closed，兼容提示词旧写法
       trading_date  : str|None  'YYYY-MM-DD'，盖在标题/文件名上的美股交易日
       weekday       : str       美东星期
       is_early_close: bool      是否半日市
@@ -147,15 +149,19 @@ def us_trading_session(now_utc=None, mode="auto"):
             "et_date": et_date.isoformat()}
 
     if et_date.weekday() >= 5:
-        return {**base, "should_run": False, "trading_date": None,
+        return {**base, "should_run": False, "is_closed": True, "closed": True, "trading_date": None,
                 "reason": f"周末（美东 {et_date} {wd}），跳过"}
 
     hols = _nyse_full_holidays(et_date.year) | ONE_OFF_CLOSURES
     if et_date in hols:
-        return {**base, "should_run": False, "trading_date": None,
+        return {**base, "should_run": False, "is_closed": True, "closed": True, "trading_date": None,
                 "reason": f"美股休市（{et_date} {wd}），跳过"}
 
     early = et_date in _early_closes(et_date.year)
-    return {**base, "should_run": True, "trading_date": et_date.isoformat(),
+    return {**base, "should_run": True, "is_closed": False, "closed": False, "trading_date": et_date.isoformat(),
             "is_early_close": early,
             "reason": f"正常交易日{'（半日市 13:00 ET 提前收盘）' if early else ''}"}
+
+if __name__ == "__main__":
+    import json
+    print(json.dumps(us_trading_session(mode="post"), ensure_ascii=False, indent=2))
