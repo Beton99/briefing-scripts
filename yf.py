@@ -241,10 +241,10 @@ def fetch_all(symbols):
 # ---------- 标的 ----------
 INDEX_FUT = ["ES=F","NQ=F","YM=F"]
 INDEX = ["^GSPC","^IXIC","^DJI","^SOX","^VIX"]
-GLOBAL = ["000001.SS","399001.SZ","^N225","^KS11","^TWII","^AXJO","^GDAXI","^STOXX"]
+GLOBAL = ["000001.SS","399001.SZ","^HSI","^N225","^KS11","^TWII","^AXJO","^GDAXI","^STOXX"]
 MACRO = ["CL=F","GC=F","DX-Y.NYB","BTC-USD","CNH=X","AUDUSD=X","CAD=X"]
 WATCHLIST = ["GOOGL","AMZN","SKM","SPMO","AVGO","NBIS","ORCL","SMCI","DRAM","MU","IREN",
-             "HOOD","NVDA","AIQ","SMH","BE","META","MRVL","RKLB","MDB","INTC","SPCX","ASML",
+             "HOOD","MS","NVDA","AIQ","SMH","BE","META","MRVL","RKLB","MDB","INTC","SPCX","ASML",
              "AAPL","AAOI","COHR","GLW","LITE","LLY","KLAC",
              "MPWR","VST","DELL","ARM","005930.KS","2DG.F",
              "VRTX","CBRS","INOD","REGN",
