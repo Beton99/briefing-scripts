@@ -38,7 +38,7 @@ def _chunks(lst, n):
     for i in range(0, len(lst), n): yield lst[i:i+n]
 
 def _bj(ts):
-    try: return (datetime.datetime.utcfromtimestamp(int(ts))+datetime.timedelta(hours=8)).strftime("%m-%d %H:%M")
+    try: return (datetime.datetime.fromtimestamp(int(ts), datetime.UTC)+datetime.timedelta(hours=8)).strftime("%m-%d %H:%M")
     except Exception: return "?"
 
 def _et_date(ts):
@@ -46,7 +46,7 @@ def _et_date(ts):
         from zoneinfo import ZoneInfo
         return datetime.datetime.fromtimestamp(int(ts), ZoneInfo("America/New_York")).date()
     except Exception:
-        u = datetime.datetime.utcfromtimestamp(int(ts))
+        u = datetime.datetime.fromtimestamp(int(ts), datetime.UTC)
         return (u - datetime.timedelta(hours=4 if 3<=u.month<=11 else 5)).date()
 
 def _next_session_date(et_dt):
@@ -206,7 +206,7 @@ def fetch_all(symbols):
     try:
         from zoneinfo import ZoneInfo; _et_today = datetime.datetime.now(ZoneInfo("America/New_York")).date()
     except Exception:
-        u=datetime.datetime.utcnow(); _et_today=(u-datetime.timedelta(hours=4 if 3<=u.month<=11 else 5)).date()
+        u=datetime.datetime.now(datetime.UTC); _et_today=(u-datetime.timedelta(hours=4 if 3<=u.month<=11 else 5)).date()
     holiday_count = 0
     for s in q:
         d=q[s]
@@ -302,14 +302,14 @@ def _print_group(title, data, order, with_hist=True):
             print(f"{d['symbol']:<10}{_p(d.get('regular')):>11}{_p(d.get('reg_pct'),1):>8}{_p(d.get('prev')):>10}{_p(prev_pct,1):>8}{_p(d.get('ext')):>11}{_p(d.get('ext_pct'),1):>8} {d.get('session','')}")
 
 if __name__ == "__main__":
-    now_bj = datetime.datetime.utcnow()+datetime.timedelta(hours=8)
+    now_bj = datetime.datetime.now(datetime.UTC)+datetime.timedelta(hours=8)
     all_syms = INDEX_FUT+INDEX+GLOBAL+MACRO+WATCHLIST+SECTOR_SYMS+AICHAIN_EXTRA
     t0=time.time(); data=fetch_all(all_syms)
     gspc=data.get("^GSPC",{}); us_close=_et_date(gspc["rmt"]) if gspc.get("rmt") else None
     try:
         from zoneinfo import ZoneInfo; et_now=datetime.datetime.now(ZoneInfo("America/New_York"))
     except Exception:
-        u=datetime.datetime.utcnow(); et_now=(u-datetime.timedelta(hours=4 if 3<=u.month<=11 else 5))
+        u=datetime.datetime.now(datetime.UTC); et_now=(u-datetime.timedelta(hours=4 if 3<=u.month<=11 else 5))
     us_next=_next_session_date(et_now)
     print(f"美股交易日(盘后用·指数最近收盘) {us_close}")
     print(f"美股日期(盘前用·下一交易日) {us_next}")
