@@ -1,0 +1,87 @@
+{
+  "locked_names": {
+    "002384.SZ": {"name": "东山精密", "market": "CN"},
+    "688525.SS": {"name": "佰维存储", "market": "CN"},
+    "600584.SS": {"name": "长电科技", "market": "CN"},
+    "002938.SZ": {"name": "鹏鼎控股", "market": "CN"},
+    "603629.SS": {"name": "利通电子", "market": "CN"},
+    "1530.HK": {"name": "三生制药", "market": "HK"},
+    "6990.HK": {"name": "科伦博泰", "market": "HK"},
+    "1801.HK": {"name": "信达生物", "market": "HK"},
+    "1276.HK": {"name": "恒瑞医药", "market": "HK"},
+    "3692.HK": {"name": "翰森制药", "market": "HK"},
+    "000660.KS": {"name": "SK海力士", "market": "KR"},
+    "005930.KS": {"name": "三星电子", "market": "KR"},
+    "2330.TW": {"name": "台积电", "market": "TW"},
+    "2DG.F": {"name": "Sivers Semiconductors", "market": "EU"}
+  },
+  "deep_scan_pool": [
+    "SPCX", "AAOI", "NBIS", "ORCL", "SMCI", "AMZN", "MU", "IREN", "SKM", "HOOD",
+    "NVDA", "BE", "GOOGL", "MRVL", "RKLB", "GLW", "COHR", "VRTX", "CBRS", "REGN",
+    "MS", "002384.SZ", "688525.SS", "600584.SS", "002938.SZ", "603629.SS",
+    "1530.HK", "6990.HK", "1801.HK", "1276.HK", "3692.HK",
+    "000660.KS", "005930.KS", "2330.TW", "2DG.F"
+  ],
+  "deep_scan_priority": {
+    "high": ["NVDA", "MU", "000660.KS", "005930.KS", "GOOGL", "AMZN", "MS", "688525.SS", "600584.SS", "AAOI"],
+    "medium": ["ORCL", "SMCI", "MRVL", "GLW", "COHR", "CBRS", "002384.SZ", "002938.SZ", "2330.TW"],
+    "low": ["SPCX", "NBIS", "IREN", "SKM", "HOOD", "BE", "RKLB", "VRTX", "REGN", "603629.SS", "1530.HK", "6990.HK", "1801.HK", "1276.HK", "3692.HK", "2DG.F"]
+  },
+  "deep_short_names": {
+    "SPCX": "SpaceX", "AAOI": "Applied Optoelectronics", "NBIS": "Nebius", "ORCL": "甲骨文",
+    "SMCI": "超微电脑", "AMZN": "亚马逊", "MU": "美光科技", "IREN": "IREN", "SKM": "SK电讯",
+    "HOOD": "Robinhood", "NVDA": "英伟达", "BE": "Bloom Energy", "GOOGL": "谷歌",
+    "MRVL": "迈威尔科技", "RKLB": "Rocket Lab", "GLW": "康宁", "COHR": "Coherent",
+    "VRTX": "Vertex", "CBRS": "Cerebras", "REGN": "Regeneron", "MS": "摩根士丹利",
+    "002384.SZ": "东山精密", "688525.SS": "佰维存储", "600584.SS": "长电科技",
+    "002938.SZ": "鹏鼎控股", "603629.SS": "利通电子", "1530.HK": "三生制药",
+    "6990.HK": "科伦博泰", "1801.HK": "信达生物", "1276.HK": "恒瑞医药",
+    "3692.HK": "翰森制药", "000660.KS": "SK海力士", "005930.KS": "三星电子",
+    "2330.TW": "台积电", "2DG.F": "Sivers Semiconductors"
+  },
+  "display_names": {
+    "GOOGL": "谷歌", "AMZN": "亚马逊", "AVGO": "博通", "ORCL": "甲骨文", "SMCI": "超微电脑",
+    "MU": "美光科技", "HOOD": "Robinhood", "NVDA": "英伟达", "BE": "Bloom Energy",
+    "META": "Meta", "MRVL": "迈威尔科技", "INTC": "英特尔", "AAPL": "苹果",
+    "COHR": "Coherent", "GLW": "康宁", "LLY": "礼来", "DELL": "戴尔科技",
+    "ASML": "阿斯麦", "MS": "摩根士丹利", "ARM": "Arm Holdings", "AMD": "超威半导体",
+    "TSM": "台积电ADR", "GFS": "格芯", "AMAT": "应用材料", "LRCX": "泛林集团",
+    "AMKR": "安靠科技", "ASX": "日月光ADR", "CIEN": "Ciena", "FN": "Fabrinet",
+    "CRDO": "Credo Technology", "ALAB": "Astera Labs", "EQIX": "Equinix",
+    "APLD": "Applied Digital", "CRWV": "CoreWeave", "VRT": "Vertiv",
+    "TT": "特灵科技", "MOD": "Modine", "GEV": "GE Vernova", "POWL": "Powell Industries",
+    "GRID": "智能电网ETF", "PWR": "Quanta Services", "MYRG": "MYR Group", "MTZ": "MasTec",
+    "CCJ": "Cameco", "CEG": "Constellation Energy", "URNM": "铀矿ETF",
+    "ROK": "罗克韦尔自动化", "BOTZ": "机器人与AI ETF", "ROBO": "机器人与自动化ETF",
+    "SNPS": "新思科技", "CDNS": "楷登电子",
+    "ES=F": "标普500指数期货", "NQ=F": "纳斯达克100指数期货", "YM=F": "道琼斯指数期货",
+    "^GSPC": "标普500指数", "^IXIC": "纳斯达克综合指数", "^DJI": "道琼斯工业指数",
+    "^SOX": "费城半导体指数", "^VIX": "VIX恐慌指数",
+    "000001.SS": "上证指数", "399001.SZ": "深证成指", "^HSI": "恒生指数",
+    "^N225": "日经225指数", "^KS11": "韩国综合指数", "^TWII": "台湾加权指数",
+    "^AXJO": "澳洲标普200指数", "^GDAXI": "德国DAX指数", "^STOXX": "欧洲STOXX 600指数",
+    "CL=F": "WTI原油", "GC=F": "COMEX黄金", "DX-Y.NYB": "美元指数",
+    "BTC-USD": "比特币/美元", "CNH=X": "美元/离岸人民币", "AUDUSD=X": "澳元/美元", "CAD=X": "美元/加元"
+  },
+  "sector_definitions": [
+    ["信息技术", "XLK"], ["通信服务", "XLC"], ["可选消费", "XLY"], ["必需消费", "XLP"],
+    ["能源", "XLE"], ["金融", "XLF"], ["医疗保健", "XLV"], ["工业", "XLI"],
+    ["材料", "XLB"], ["房地产", "XLRE"], ["公用事业", "XLU"]
+  ],
+  "ai_chain_definitions": [
+    ["1.EDA/IP", ["SNPS", "CDNS", "ARM"]],
+    ["2.算力芯片", ["NVDA", "AVGO", "AMD"]],
+    ["3.晶圆制造", ["TSM", "INTC", "GFS"]],
+    ["4.半导体设备", ["ASML", "AMAT", "LRCX"]],
+    ["5.存储HBM", ["MU", "000660.KS", "005930.KS"]],
+    ["6.先进封装", ["AMKR", "ASX"]],
+    ["7.光模块光互联", ["COHR", "CIEN", "FN"]],
+    ["8.电气互连", ["CRDO", "ALAB"]],
+    ["9.数据中心", ["EQIX", "APLD", "CRWV"]],
+    ["10.散热", ["VRT", "TT", "MOD"]],
+    ["11.电力设备", ["GEV", "POWL", "GRID"]],
+    ["12.电网建设", ["PWR", "MYRG", "MTZ"]],
+    ["13.核能与铀", ["CCJ", "CEG", "URNM"]],
+    ["14.物理AI机器人", ["ROK", "BOTZ", "ROBO"]]
+  ]
+}
